@@ -54,7 +54,7 @@ pywin32==224
 PyYAML==5.1.1
 rasterio==1.1.1
 ratelim==0.1.6
-requests==2.11.1
+requests==2.20.0
 s3transfer==0.2.1
 scipy==0.17.0
 Shapely==1.6.4.post2
