@@ -7,7 +7,7 @@ function our_layers(map,options){
     this.renderPoints=function(jsdata)
         {
             try{
-                pts=new L.GeoJSON.AJAX('http://157.230.64.34:8000/static/media/'+jsdata+'_points.geojson',{
+                pts=new L.GeoJSON.AJAX('http:url:8000/static/media/'+jsdata+'_points.geojson',{
                     onEachFeature: function(feature,layer){
                         layer.bindPopup('<b>Magnitude</b>= '+feature.properties.Magnitude+'<br>'+
                                          '<b>Bearing</b>= ' +feature.properties.Bearing+'<br>'+
@@ -29,7 +29,7 @@ function our_layers(map,options){
     this.renderBuffers=function(jsdata)
         {
             try{
-                buffs=new L.GeoJSON.AJAX('http://157.230.64.34:8000/static/media/'+jsdata+'_buffers.geojson',{
+                buffs=new L.GeoJSON.AJAX('http:url:8000/static/media/'+jsdata+'_buffers.geojson',{
                     style: function colors(feature){
                         if (feature.properties.Magnitude < 2){
                             return{
