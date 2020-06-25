@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<html>
+{% load static %}
+{% load leaflet_tags %}
+{% load bootstrap4 %}
+{% load fontawesome %}
+<head>
+    {% leaflet_js %}
+    {% leaflet_css %}
+    {% bootstrap_css %}
+    {% fontawesome_stylesheet %}
+    <title>Our Home</title>
+	<style type="text/css">
+		#gis {width: 100%;height:800px;}
+		</style>
+    <link rel="stylesheet" type="text/css" href="{% static 'leaflet-search-master/src/leaflet-search.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leafletgroupedlayercontrol/dist/leaflet.groupedlayercontrol.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leaflet-control-osm-geocoder-master/Control.OSMGeocoder.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'Leaflet.Control.Layers.Tree-master/L.Control.Layers.Tree.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'sidebar/L.Control.Sidebar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'easybtn/easy-button.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'leaflet-ruler-master/src/leaflet-ruler.css' %}">
+    <link rel='stylesheet' href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css' />
+    <script type="text/javascript" src="{% static 'jquery/jquery-3.3.1.min.js' %}" > </script>
+    <script type="text/javascript" src="{% static 'dist/leaflet.ajax.js' %}" > </script>
+    <script type="text/javascript" src="{% static 'turf/turf.min.js' %}" > </script>
+    <script type="text/javascript" src="{% static 'leaflet-search-master/src/leaflet-search.js' %}" > </script>
+    <script type="text/javascript" src="{% static 'leafletgroupedlayercontrol/dist/leaflet.groupedlayercontrol.js' %}" > </script>
+    <script type="text/javascript" src="{% static 'leaflet-control-osm-geocoder-master/Control.OSMGeocoder.js' %}" > </script>
+    <script type="text/javascript" src="{% static 'Leaflet.Control.Layers.Tree-master/L.Control.Layers.Tree.js' %}" > </script>
+    <script type="text/javascript" src="{% static 'sidebar/L.Control.Sidebar.js' %}" > </script>
+    <script type="text/javascript" src="{% static 'easybtn/easy-button.js' %}" > </script>
+    <script type="text/javascript" src="{% static 'basemaps/leaflet-providers.js' %}" > </script>
+    <script type="text/javascript" src="{% static 'leaflet-ruler-master/src/leaflet-ruler.js' %}" > </script>
+    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js'></script>
+    <script type="text/javascript" src="{% static 'leaflet-print/bundle.js' %}" > </script>
+</head>
+<body>
+<br>
+<iframe id="q" name="q" src="/earthquakes" width="100%" height="300" style="border:30px;overflow-y:none;" scrolling="no">
+</iframe>
+
+<div id="side-bar" class="col-md-11 well">
+</div>
+<script>
+function mapPoints(fileid)
+{
+    mapref.renderPoints(fileid);
+}
+function removePoints(fileid)
+{
+    mapref.bailPoints(fileid);
+}
+function mapBuffers(fileid)
+{
+    mapref.renderBuffers(fileid)
+}
+function removeBuffs(fileid)
+{
+    mapref.bailBuffs(fileid);
+}
+</script>
+<script src="{% static 'js2.js' %}"></script>
+
+{% leaflet_map "gis" callback="window.our_layers" %}
+
+</body>
+</html>
+{% endblock %}

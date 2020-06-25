@@ -1,0 +1,90 @@
+{% load static %}
+{% block content %}
+<script type="text/javascript" src="{% static 'jquery/jquery-3.3.1.min.js' %}" > </script>
+<script type="text/javascript" src="{% static 'bootstrap-4.0.0-dist/js/bootstrap.js' %}" > </script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+  .initial {
+    color: blue;
+  }
+  .remove {
+    color: red;
+  }
+  </style>
+<script>
+  $('#download_link_sec').html = "";
+  function showPoints(fileid){
+    var aele = $("#link1");
+    if (aele.text().indexOf("Add")>-1)
+    {
+      window.parent.mapPoints(fileid);
+      aele.text("Remove Points From Map");
+      aele.addClass("remove");
+    }
+    else{
+      window.parent.removePoints(fileid);
+      aele.text("Add Points From Map");
+      aele.removeClass("remove");
+      aele.addClass("initial"); 
+    }   
+  };
+
+  function showBuffers(fileid){
+    var aele = $("#link2");
+    if (aele.text().indexOf("Add")>-1)
+    {
+      window.parent.mapBuffers(fileid);
+      aele.text("Remove Buffers From Map");
+      aele.removeClass();
+      aele.addClass("remove");
+    }
+    else{
+      window.parent.removeBuffs(fileid);
+      aele.text("Add Buffers From Map");
+      aele.removeClass("remove");
+      aele.addClass("initial");  
+    }   
+  };
+
+  function subForm()
+  {
+    var jsdata = {"quakes": $('#quakes').val()};
+    var url = "/earthquakes/"
+    var jqHdr = $.ajax({
+            async: true,
+            cache: false,
+            type: "POST",
+            url: url,
+            data: jsdata,
+            dataType: "json"
+        }).done(function (data, textStatus) {
+          var dwnld_links = "";
+            if (data.status == "OK")
+            {
+                dwnld_links = "<div style='padding-top:15px;'><b>Add or Remove Layers</b></div>";
+                dwnld_links += "<table class='table table-sm table-bordered'>";
+                dwnld_links += "<td><a href='#' id='link1' onclick='showPoints(\"" + data.geom_id + "\")'>Add Points</a></td>";
+                dwnld_links += "<td><a href='#' id='link2' onclick='showBuffers(\"" + data.geom_id + "\")'>Add Buffers To Map</a></td>";
+                dwnld_links += "</tr></table>";
+              }
+            $('#download_link_sec').html(dwnld_links);
+        });
+    }
+</script>
+
+<!DOCTYPE html>
+<html>
+<body>
+<p>Select the earthquakes you want to be mapped</p>
+<form action="/earthquakes" method="post">
+  <select name="quakes" id="quakes">
+    <option value="sig">Significant Earthquakes</option>
+    <option value="all">All Earthquakes</option>
+  </select>
+  <br><br>
+  <input type="button" onclick="subForm()" value="SUBMIT" class="btn btn-primary" >
+</form>
+</body>
+<div style="margin-left:5px;" id="download_link_sec"></div>
+</html>
+{% endblock %}
