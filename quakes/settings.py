@@ -4,7 +4,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6h-^sq7e3ke14eri35n8#w@mubuu(f2m@$sy_$sk=a-zggf$gc'
+SECRET_KEY = 'nah'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -62,11 +62,11 @@ WSGI_APPLICATION = 'quakes.wsgi.application'
 DATABASES = {
     'default': {
          'ENGINE': 'django.contrib.gis.db.backends.postgis',
-         'NAME': 'quakes',
+         'NAME': 'doubt_it',
          'USER': 'postgres',
-         'PASSWORD': 'Bruce4509',
-         'HOST': '157.230.64.34',
-         'PORT': '5432',
+         'PASSWORD': 'a_password',
+         'HOST': 'an_ip',
+         'PORT': '5433',
     }
 }
 
