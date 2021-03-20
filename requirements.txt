@@ -28,7 +28,7 @@ GDAL==2.2.4
 geocoder==1.38.1
 geojson==2.4.1
 jdcal==1.4.1
-Jinja2==2.10.1
+Jinja2==2.11.3
 jmespath==0.9.4
 MarkupSafe==1.1.1
 matplotlib==1.5.2
