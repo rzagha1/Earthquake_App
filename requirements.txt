@@ -51,7 +51,7 @@ pyproj==1.9.6
 python-dateutil==2.5.3
 pytz==2016.6.1
 pywin32==224
-PyYAML==5.1.1
+PyYAML==5.4
 rasterio==1.1.1
 ratelim==0.1.6
 requests==2.11.1
